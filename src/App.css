@@ -2,37 +2,128 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #fafafa;
+  font-family: 'nanumsquare';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loginBox{
+  border:1px solid gray;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.signupBox{
+  border:1px solid gray;
 }
 
-.App-link {
-  color: #61dafb;
+.leftBox{
+  float:left;
+  padding-right: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.leftBox img{
+  height: 600px;
+}
+
+.rightBox{
+  float:left;
+  width: 350px;
+}
+
+.loginBox{
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  height: 373px;
+}
+
+.loginBox img{
+  width: 200px;
+  padding-top: 10%;
+}
+
+.loginBox form{
+  height: 100px;
+}
+
+.loginBox form input{
+  background-color: #fafafa;
+  width: 250px;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+}
+
+.loginBox button{
+  background-color: #0095f6;
+  color:white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 258px;
+  height: 35px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.loginBox a{
+  font-size: 0.8em;
+}
+
+.loginBox a:link{
+  color: #00376b;
+  font-weight: bold;
+}
+
+.loginBox a:visited{
+  color:#00376b;
+  font-weight: bold;
+}
+
+.loginBox a:hover{
+  color: #00376b;
+  font-weight: bold;
+}
+
+.loginBox a:active{
+  color:red;
+  font-weight: bold;
+}
+
+.signupBox{
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  height: 65px;
+}
+
+.signupBox p{
+  padding-top: 2%;
+}
+
+.signupBox p a:link{
+  color: #0095f6;
+  font-weight: bold;
+}
+
+.signupBox p a:visited{
+  color:#0095f6;
+  font-weight: bold;
+}
+
+.signupBox p a:hover{
+  color: #0095f6;
+  font-weight: bold;
+}
+
+.signupBox p a:active{
+  color:red;
+  font-weight: bold;
+}
+
+a{
+  text-decoration: none;
+}
+
+.main{
+  padding-left: 20%;
+  padding-top: 4%;
+  width: 100%;
+  max-width: 935px;
 }
