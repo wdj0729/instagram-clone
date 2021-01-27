@@ -1,129 +1,73 @@
 .App {
   text-align: center;
-}
-
-body {
-  background-color: #fafafa;
-  font-family: 'nanumsquare';
-}
-
-.loginBox{
-  border:1px solid gray;
-}
-
-.signupBox{
-  border:1px solid gray;
-}
-
-.leftBox{
-  float:left;
-  padding-right: 30px;
-}
-
-.leftBox img{
   height: 600px;
 }
 
-.rightBox{
-  float:left;
-  width: 350px;
-}
-
-.loginBox{
-  border: 1px solid #dbdbdb;
-  background-color: white;
-  height: 373px;
-}
-
-.loginBox img{
-  width: 200px;
-  padding-top: 10%;
-}
-
-.loginBox form{
-  height: 100px;
-}
-
-.loginBox form input{
+body {
+  margin: 0;
+  padding: 0;
   background-color: #fafafa;
-  width: 250px;
-  height: 40px;
-  border-radius: 3px;
-  border: 1px solid #dbdbdb;
+  font-family: 'nanumsquare';
+  box-sizing: border-box;
+  min-height: 100%;
 }
 
-.loginBox button{
-  background-color: #0095f6;
-  color:white;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  width: 258px;
-  height: 35px;
-  font-size: 1em;
-  font-weight: bold;
+#root {
+  min-height: 100%;
 }
 
-.loginBox a{
-  font-size: 0.8em;
-}
-
-.loginBox a:link{
-  color: #00376b;
-  font-weight: bold;
-}
-
-.loginBox a:visited{
-  color:#00376b;
-  font-weight: bold;
-}
-
-.loginBox a:hover{
-  color: #00376b;
-  font-weight: bold;
-}
-
-.loginBox a:active{
-  color:red;
-  font-weight: bold;
-}
-
-.signupBox{
-  border: 1px solid #dbdbdb;
-  background-color: white;
-  height: 65px;
-}
-
-.signupBox p{
-  padding-top: 2%;
-}
-
-.signupBox p a:link{
-  color: #0095f6;
-  font-weight: bold;
-}
-
-.signupBox p a:visited{
-  color:#0095f6;
-  font-weight: bold;
-}
-
-.signupBox p a:hover{
-  color: #0095f6;
-  font-weight: bold;
-}
-
-.signupBox p a:active{
-  color:red;
-  font-weight: bold;
+html{
+  height: 100%;
 }
 
 a{
   text-decoration: none;
 }
 
-.main{
-  padding-left: 20%;
-  padding-top: 4%;
+.footer{
   width: 100%;
-  max-width: 935px;
+  float:left;
+  margin-top: 3%;
+  margin-left: 33%;
+}
+
+.footerDiv1{
+  width: 600px;
+  height: 20px;
+}
+
+.footerDiv1 p{
+  float:left;
+  color: #8e8e8e;
+  max-width: 100px;
+  margin: 0 12px 0 0;
+  font-size: 12px;
+}
+
+.footerDiv2{
+  width: 600px;
+  height: 20px;
+  margin: 0 0 0 70px;
+}
+
+.footerDiv2 p{
+  float:left;
+  color: #8e8e8e;
+  max-width: 100px;
+  margin: 0 12px 0 0;
+  font-size: 12px;
+}
+
+.footerDiv3{
+  width: 600px;
+  height: 20px;
+  margin: 10px 0 60px 150px;
+}
+
+.footerDiv3 p{
+  float:left;
+  color: #8e8e8e;
+  max-width: 200px;
+  margin: 0 12px 0 0;
+  font-size: 12px;
 }
