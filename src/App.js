@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import './App.css';
-
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { Home, PasswordReset, Register } from './pages';
 
