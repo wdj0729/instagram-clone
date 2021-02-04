@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import logo2 from './image2.jpg';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
@@ -90,6 +91,13 @@ const Register = () => {
     const [name,setName] = useState('');
     const [nickname,setNickname] = useState('');
 
+    const [emailFlag,setEmailFlag] = useState('');
+    const [passwordFlag,setPasswordFlag] = useState('');
+    const [nameFlag,setNameFlag] = useState('');
+    const [nicknameFlag,setNicknameFlag] = useState('');
+
+    const history = useHistory();
+
     const onchangeEmail = (e) => {
       setEmail(e.target.value);
     };
@@ -106,24 +114,71 @@ const Register = () => {
       setName(e.target.value);
     };
 
-    const onSubmit = (e) =>{
+    const onSubmit = (e) => {
       e.preventDefault();
 
-      console.log({email, password, nickname, name});
+      // 이메일 유효성 검사
+      const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      
+      if (regExpEmail.test(email) === true){
+        console.log("사용가능한 이메일입니다.");
+        setEmailFlag(true);
+      } else {
+        console.log("유효하지 않은 이메일입니다.");
+        setEmailFlag(false);
+      }
 
-      axios.post('http://110.47.129.156:8080/api/signup', {
-        email: email,
-        password: password,
-        nickname: nickname,
-        name: name
-      })
-      .then(function(response){
-        console.log(response);
-      }).catch(function(error){
-        console.log(error);
-      }).then(function(){
-        console.log("SIGNUP");
-      });
+      // 최소 10~20자, 대문자 하나, 소문자 하나, 숫자 하나, 특수문자 하나 이상로 구성
+      const regExpPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,20}$/; 
+      
+      if (regExpPwd.test(password) === true){
+        console.log("사용가능한 비밀번호입니다.");
+        setPasswordFlag(true);
+      } else {
+        console.log("유효하지 않은 비밀번호입니다.");
+        setPasswordFlag(false);
+      }
+
+      // 최소 3~8자, 한글, 영어, 숫자로 구성
+      const regExpNick = /^[가-힣|a-z|A-Z|0-9|\*]{3,8}$/;
+
+      if (regExpNick.test(nickname) === true){
+        console.log("사용가능한 닉네임입니다.");
+        setNicknameFlag(true);
+      } else {
+        console.log("유효하지 않은 닉네임입니다.");
+        setNicknameFlag(false);
+      }
+
+      // 최소 2~5자, 한글로 구성
+      const regExpName = /^[가-힣\*]{2,5}$/;
+      if (regExpName.test(name) === true){
+        console.log("사용가능한 이름입니다.");
+        setNameFlag(true);
+      } else {
+        console.log("유효하지 않은 이름입니다.");
+        setNameFlag(false);
+      }
+
+      console.log({email, password, nickname, name});
+      console.log({emailFlag, passwordFlag, nicknameFlag, nameFlag});
+
+      if(emailFlag === true && (emailFlag === passwordFlag === nicknameFlag === nameFlag)){
+          axios.post('https://110.47.129.156:8080/api/signup/', {
+          email: email,
+          password: password,
+          nickname: nickname,
+          name: name
+        })
+        .then(function(response){
+          console.log(response);
+          history.push("/");
+        }).catch(function(error){
+          console.log(error);
+        }).then(function(){
+          console.log("SIGNUP");
+        });
+      }
     };
 
     return(

@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import logo from './image.jpg';
 import logo2 from './image2.jpg';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Home = () => {
@@ -96,6 +97,11 @@ const Home = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
+    const [emailFlag,setEmailFlag] = useState('');
+    const [passwordFlag,setPasswordFlag] = useState('');
+
+    const history = useHistory();
+
     const onchangeEmail = (e) => {
       setEmail(e.target.value);
     };
@@ -107,19 +113,45 @@ const Home = () => {
     const onSubmit = (e) =>{
       e.preventDefault();
 
-      console.log({email, password});
+      // 이메일 유효성 검사
+      const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      
+      if (regExpEmail.test(email) === true){
+        console.log("사용가능한 이메일입니다.");
+        setEmailFlag(true);
+      } else {
+        console.log("유효하지 않은 이메일입니다.");
+        setEmailFlag(false);
+      }
 
-      axios.post('http://110.47.129.156:8080/api/signin', {
-        email: email,
-        password: password,
-      })
-      .then(function(response){
-        console.log(response);
-      }).catch(function(error){
-        console.log(error);
-      }).then(function(){
-        console.log("SIGNIN");
-      });
+      // 최소 10~20자, 대문자 하나, 소문자 하나, 숫자 하나, 특수문자 하나 이상로 구성
+      const regExpPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,20}$/;
+      
+      if (regExpPwd.test(password) === true){
+        console.log("사용가능한 비밀번호입니다.");
+        setPasswordFlag(true);
+      } else {
+        console.log("유효하지 않은 비밀번호입니다.");
+        setPasswordFlag(false);
+      }
+
+      console.log({email, password});
+      console.log({emailFlag, passwordFlag});
+
+      if(emailFlag === true && (emailFlag === passwordFlag)){
+          axios.post('https://110.47.129.156:8080/api/signin/', {
+          email: email,
+          password: password,
+        })
+        .then(function(response){
+          console.log(response);
+          history.push("/LoginPage");
+        }).catch(function(error){
+          console.log(error);
+        }).then(function(){
+          console.log("SIGNIN");
+        });
+      }
     };
 
     return(
@@ -140,7 +172,7 @@ const Home = () => {
               <div style={loginBoxFormDiv2}>
                 <button style={loginBoxFormButton}>로그인</button>
               </div>
-              <Link style={loginBoxLink} to="/passwordReset">비밀번호를 잊으셨나요?</Link>
+              <Link style={loginBoxLink} to="/PasswordReset">비밀번호를 잊으셨나요?</Link>
             </form>
           </div>
           <div style={registerBox}>

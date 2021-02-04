@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { Home, PasswordReset, Register } from './pages';
+import { Home, PasswordReset, Register, LoginPage } from './pages';
 
 class App extends Component {
   render(){
@@ -12,6 +12,7 @@ class App extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/passwordReset' component={PasswordReset}/>
           <Route path='/register' component={Register}/>
+          <Route path='/LoginPage' component={LoginPage}/>
         </Router>
         <div className='footer'>
           <div className='footerDiv1'>
