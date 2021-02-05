@@ -97,33 +97,26 @@ const Home = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
-    const [emailFlag,setEmailFlag] = useState('');
-    const [passwordFlag,setPasswordFlag] = useState('');
+    const [emailFlag,setEmailFlag] = useState(false);
+    const [passwordFlag,setPasswordFlag] = useState(false);
 
     const history = useHistory();
 
     const onchangeEmail = (e) => {
+      // 이메일 유효성 검사
+      const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      
+      if (regExpEmail.test(e.target.value) === true){
+        console.log("사용가능한 이메일입니다.");
+        setEmailFlag(true);
+      } else {
+        //console.log("유효하지 않은 이메일입니다.");
+        setEmailFlag(false);
+      }
       setEmail(e.target.value);
     };
 
     const onchangePassword = (e) => {
-      setPassword(e.target.value);
-    };
-
-    const onSubmit = (e) =>{
-      e.preventDefault();
-
-      // 이메일 유효성 검사
-      const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-      
-      if (regExpEmail.test(email) === true){
-        console.log("사용가능한 이메일입니다.");
-        setEmailFlag(true);
-      } else {
-        console.log("유효하지 않은 이메일입니다.");
-        setEmailFlag(false);
-      }
-
       // 최소 10~20자, 대문자 하나, 소문자 하나, 숫자 하나, 특수문자 하나 이상로 구성
       const regExpPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,20}$/;
       
@@ -131,17 +124,31 @@ const Home = () => {
         console.log("사용가능한 비밀번호입니다.");
         setPasswordFlag(true);
       } else {
-        console.log("유효하지 않은 비밀번호입니다.");
+        //console.log("유효하지 않은 비밀번호입니다.");
         setPasswordFlag(false);
       }
+      setPassword(e.target.value);
+    };
 
-      console.log({email, password});
-      console.log({emailFlag, passwordFlag});
+    const onSubmit = (e) =>{
+      e.preventDefault();
 
       if(emailFlag === true && (emailFlag === passwordFlag)){
-          axios.post('https://110.47.129.156:8080/api/signin/', {
-          email: email,
-          password: password,
+        axios({
+          url: '/signin',
+          method: 'post',
+          baseURL: 'http://110.47.129.156:8080/api/',
+          headers: { 
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          params: {
+            ID: 12345
+          }, 
+          data: {
+            email: email,
+            password: password,
+          }, 
+          withCredentials: true
         })
         .then(function(response){
           console.log(response);

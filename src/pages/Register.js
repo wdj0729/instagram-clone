@@ -91,32 +91,14 @@ const Register = () => {
     const [name,setName] = useState('');
     const [nickname,setNickname] = useState('');
 
-    const [emailFlag,setEmailFlag] = useState('');
-    const [passwordFlag,setPasswordFlag] = useState('');
-    const [nameFlag,setNameFlag] = useState('');
-    const [nicknameFlag,setNicknameFlag] = useState('');
+    const [emailFlag,setEmailFlag] = useState(false);
+    const [passwordFlag,setPasswordFlag] = useState(false);
+    const [nameFlag,setNameFlag] = useState(false);
+    const [nicknameFlag,setNicknameFlag] = useState(false);
 
     const history = useHistory();
 
     const onchangeEmail = (e) => {
-      setEmail(e.target.value);
-    };
-
-    const onchangePassword = (e) => {
-      setPassword(e.target.value);
-    };
-
-    const onchangeNickname = (e) => {
-      setNickname(e.target.value);
-    };
-
-    const onchangeName = (e) => {
-      setName(e.target.value);
-    };
-
-    const onSubmit = (e) => {
-      e.preventDefault();
-
       // 이메일 유효성 검사
       const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
       
@@ -124,10 +106,13 @@ const Register = () => {
         console.log("사용가능한 이메일입니다.");
         setEmailFlag(true);
       } else {
-        console.log("유효하지 않은 이메일입니다.");
+        //console.log("유효하지 않은 이메일입니다.");
         setEmailFlag(false);
       }
+      setEmail(e.target.value);
+    };
 
+    const onchangePassword = (e) => {
       // 최소 10~20자, 대문자 하나, 소문자 하나, 숫자 하나, 특수문자 하나 이상로 구성
       const regExpPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,20}$/; 
       
@@ -135,10 +120,13 @@ const Register = () => {
         console.log("사용가능한 비밀번호입니다.");
         setPasswordFlag(true);
       } else {
-        console.log("유효하지 않은 비밀번호입니다.");
+        //console.log("유효하지 않은 비밀번호입니다.");
         setPasswordFlag(false);
       }
+      setPassword(e.target.value);
+    };
 
+    const onchangeNickname = (e) => {
       // 최소 3~8자, 한글, 영어, 숫자로 구성
       const regExpNick = /^[가-힣|a-z|A-Z|0-9|\*]{3,8}$/;
 
@@ -146,29 +134,46 @@ const Register = () => {
         console.log("사용가능한 닉네임입니다.");
         setNicknameFlag(true);
       } else {
-        console.log("유효하지 않은 닉네임입니다.");
+        //console.log("유효하지 않은 닉네임입니다.");
         setNicknameFlag(false);
       }
+      setNickname(e.target.value);
+    };
 
+    const onchangeName = (e) => {
       // 최소 2~5자, 한글로 구성
       const regExpName = /^[가-힣\*]{2,5}$/;
       if (regExpName.test(name) === true){
         console.log("사용가능한 이름입니다.");
         setNameFlag(true);
       } else {
-        console.log("유효하지 않은 이름입니다.");
+        //console.log("유효하지 않은 이름입니다.");
         setNameFlag(false);
       }
+      setName(e.target.value);
+    };
 
-      console.log({email, password, nickname, name});
-      console.log({emailFlag, passwordFlag, nicknameFlag, nameFlag});
+    const onSubmit = (e) => {
+      e.preventDefault();
 
       if(emailFlag === true && (emailFlag === passwordFlag === nicknameFlag === nameFlag)){
-          axios.post('https://110.47.129.156:8080/api/signup/', {
-          email: email,
-          password: password,
-          nickname: nickname,
-          name: name
+        axios({
+          url: '/signup',
+          method: 'post',
+          baseURL: 'http://110.47.129.156:8080/api/',
+          headers: { 
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          params: {
+            ID: 12345
+          },
+          data: {
+            email: email,
+            password: password,
+            nickname: nickname,
+            name: name
+          }, 
+          withCredentials: true
         })
         .then(function(response){
           console.log(response);
