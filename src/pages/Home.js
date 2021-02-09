@@ -1,7 +1,5 @@
 /* eslint-disable */
 import React, {useState} from 'react';
-import logo from './image.jpg';
-import logo2 from './image2.jpg';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -85,7 +83,7 @@ const Home = () => {
         height: '65px',
     };
 
-    const registerBoxP ={
+    const registerBoxP = {
         paddingTop: '1%',
     };
 
@@ -164,11 +162,11 @@ const Home = () => {
     return(
         <div style={main}>
         <div style={leftBox}>
-          <img style={leftImg} src={logo}></img>
+          <img style={leftImg} src={process.env.PUBLIC_URL + '/img/image.jpg'}></img>
         </div>
         <div style={rightBox}>
           <div style={loginBox}>
-            <img style={loginBoxImg} src={logo2}></img>
+            <img style={loginBoxImg} src={process.env.PUBLIC_URL + '/img/image2.jpg'}></img>
             <form style={loginBoxForm} onSubmit={onSubmit}>
               <div style={loginBoxFormDiv1}>
                 <input style={loginBoxFormInput} placeholder="이메일" required onChange={onchangeEmail}></input>

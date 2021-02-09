@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, {useState} from 'react';
-import logo2 from './image2.jpg';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -78,7 +77,7 @@ const Register = () => {
       height: '65px',
     };
 
-    const loginBoxP ={
+    const loginBoxP = {
         paddingTop: '1%',
     };
 
@@ -189,7 +188,7 @@ const Register = () => {
     return(
       <div style={main}>
           <div style={registerBox}>
-            <img style={registerBoxImg} src={logo2}></img>
+            <img style={registerBoxImg} src={process.env.PUBLIC_URL + '/img/image2.jpg'}></img>
             <p style={registerBoxP}>친구들의 사진과 동영상을 보려면 가입하세요.</p>
             <form style={registerBoxForm} onSubmit={onSubmit}>
               <div style={registerBoxFormDiv1}>
