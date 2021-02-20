@@ -178,7 +178,7 @@ const Home = () => {
                 <input style={loginBoxFormInput} placeholder="이메일" required onChange={onchangeEmail}></input>
               </div>
               <div style={loginBoxFormDiv1}>
-                <input style={loginBoxFormInput} placeholder="비밀번호" required onChange={onchangePassword}></input>
+                <input style={loginBoxFormInput} placeholder="비밀번호" type="password" required onChange={onchangePassword}></input>
               </div>
               <div style={loginBoxFormDiv2}>
                 <button style={loginBoxFormButton}>로그인</button>
