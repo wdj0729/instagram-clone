@@ -105,7 +105,7 @@ const Register = () => {
         console.log("사용가능한 이메일입니다.");
         setEmailFlag(true);
       } else {
-        //console.log("유효하지 않은 이메일입니다.");
+        // console.log("유효하지 않은 이메일입니다.");
         setEmailFlag(false);
       }
       setEmail(e.target.value);
@@ -119,7 +119,7 @@ const Register = () => {
         console.log("사용가능한 비밀번호입니다.");
         setPasswordFlag(true);
       } else {
-        //console.log("유효하지 않은 비밀번호입니다.");
+        // console.log("유효하지 않은 비밀번호입니다.");
         setPasswordFlag(false);
       }
       setPassword(e.target.value);
@@ -133,7 +133,7 @@ const Register = () => {
         console.log("사용가능한 닉네임입니다.");
         setNicknameFlag(true);
       } else {
-        //console.log("유효하지 않은 닉네임입니다.");
+        // console.log("유효하지 않은 닉네임입니다.");
         setNicknameFlag(false);
       }
       setNickname(e.target.value);
@@ -146,7 +146,7 @@ const Register = () => {
         console.log("사용가능한 이름입니다.");
         setNameFlag(true);
       } else {
-        //console.log("유효하지 않은 이름입니다.");
+        // console.log("유효하지 않은 이름입니다.");
         setNameFlag(false);
       }
       setName(e.target.value);
@@ -171,11 +171,12 @@ const Register = () => {
             password: password,
             nickname: nickname,
             name: name
-          }, 
-          withCredentials: true
+          }
         })
         .then(function(response){
           console.log(response);
+
+          // 메인 화면으로 이동
           history.push("/");
         }).catch(function(error){
           console.log(error);

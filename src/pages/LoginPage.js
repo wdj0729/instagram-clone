@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const LoginPage= () => {
     const nav = {
@@ -64,15 +65,15 @@ const LoginPage= () => {
 
     return(
         <div style={nav}>
-            <img style={navImg} src={process.env.PUBLIC_URL + '/img/image2.jpg'}></img>
+            <Link to="/LoginPage"><img style={navImg} src={process.env.PUBLIC_URL + '/img/image2.jpg'}></img></Link>
             <div style={inputBox}>
                 <input style={input} placeholder="검색"></input>
             </div>
             <div style={navIconBox}>
-                <img style={navIconImg1} src={process.env.PUBLIC_URL + '/img/home.jpg'}></img>
-                <img style={navIconImg2} src={process.env.PUBLIC_URL + '/img/compass.jpg'}></img>
+                <Link to="/LoginPage"><img style={navIconImg1} src={process.env.PUBLIC_URL + '/img/home.jpg'}></img></Link>
+                <Link to="/Explore"><img style={navIconImg2} src={process.env.PUBLIC_URL + '/img/compass.jpg'}></img></Link>
                 <img style={navIconImg3} src={process.env.PUBLIC_URL + '/img/heart.jpg'}></img>
-                <img style={navIconImg4} src={process.env.PUBLIC_URL + '/img/profile.jpg'}></img>
+                <Link to="/Profile"><img style={navIconImg4} src={process.env.PUBLIC_URL + '/img/profile.jpg'}></img></Link>
             </div>
         </div>
     )

@@ -108,7 +108,7 @@ const Home = () => {
         console.log("사용가능한 이메일입니다.");
         setEmailFlag(true);
       } else {
-        //console.log("유효하지 않은 이메일입니다.");
+        // console.log("유효하지 않은 이메일입니다.");
         setEmailFlag(false);
       }
       setEmail(e.target.value);
@@ -122,7 +122,7 @@ const Home = () => {
         console.log("사용가능한 비밀번호입니다.");
         setPasswordFlag(true);
       } else {
-        //console.log("유효하지 않은 비밀번호입니다.");
+        // console.log("유효하지 않은 비밀번호입니다.");
         setPasswordFlag(false);
       }
       setPassword(e.target.value);
@@ -145,11 +145,17 @@ const Home = () => {
           data: {
             email: email,
             password: password,
-          }, 
-          withCredentials: true
+          }
         })
         .then(function(response){
           console.log(response);
+          const { accessToken } = response.data;
+          // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+          axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+          // accessToken을 localStorage, cookie 등에 저장하지 않는다!
+
+          // 로그인한 페이지로 이동
           history.push("/LoginPage");
         }).catch(function(error){
           console.log(error);
